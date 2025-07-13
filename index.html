@@ -4,81 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ネコティッシュホールド</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: #f8f9fa;
+            color: #343a40;
+            animation: fadeIn 1s ease-in-out;
         }
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             padding: 20px;
         }
         header {
-            background: #8e44ad;
-            background: -webkit-linear-gradient(to right, #c39bd3, #8e44ad);
-            background: linear-gradient(to right, #c39bd3, #8e44ad);
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: #fff;
-            padding: 2rem 1rem;
+            padding: 4rem 2rem;
             text-align: center;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 700;
         }
         header p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+        .main-visual img {
+            max-width: 250px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 5px solid #fff;
+            margin-top: -75px;
+            position: relative;
+            z-index: 10;
         }
         .section {
             background: #fff;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
         }
         .section h2 {
-            color: #8e44ad;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #6a11cb;
+            border-bottom: 3px solid #f0f0f0;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
         ul {
-            list-style-type: "✓ ";
-            padding-left: 20px;
+            list-style: none;
+            padding-left: 0;
         }
         li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        li::before {
+            content: '✨';
+            margin-right: 15px;
+            font-size: 1.5rem;
         }
         .cta-button {
-            display: block;
-            width: 80%;
-            max-width: 300px;
-            margin: 40px auto;
-            background-color: #8e44ad;
+            display: inline-block;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
-            padding: 15px 20px;
+            padding: 18px 35px;
             text-align: center;
             text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
         }
         .cta-button:hover {
-            background-color: #7d3c98;
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.5);
         }
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #777;
+            padding: 30px;
+            margin-top: 50px;
+            font-size: 1rem;
+            color: #6c757d;
         }
     </style>
 </head>
@@ -89,8 +131,8 @@
         <p>未経験からでも大丈夫。最新のAI技術を学び、未来のキャリアを築くためのオンラインコミュニティへようこそ。</p>
     </header>
 
-    <div style="text-align: center; margin: 30px 0;">
-        <img src="cat_blue.png" alt="青い猫のイラスト" style="max-width: 250px; height: auto; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <div class="main-visual" style="text-align: center;">
+        <img src="cat_blue.png" alt="青い猫のイラスト">
     </div>
 
     <div class="container">
@@ -116,10 +158,10 @@
             </ul>
         </section>
 
-        <section class="section">
-            <h2>参加は簡単</h2>
+        <section class="section" style="text-align: center;">
+            <h2>今すぐコミュニティに参加しよう！</h2>
             <p>参加方法はとてもシンプルです。下のボタンからDiscordサーバーに参加するだけ！<br>あなたのご参加を心よりお待ちしています。</p>
-            <a href="https://www.google.com" class="cta-button" target="_blank" rel="noopener noreferrer">Discordに参加する</a>
+            <a href="https://www.google.com" class="cta-button" target="_blank" rel="noopener noreferrer">今すぐ無料で参加する</a>
         </section>
     </div>
 
